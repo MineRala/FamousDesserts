@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		E8127BD026DBF98600F073BD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BCF26DBF98600F073BD /* HomeViewController.swift */; };
+		E8127BDA26DBFF3600F073BD /* DeclarativeLayout in Frameworks */ = {isa = PBXBuildFile; productRef = E8127BD926DBFF3600F073BD /* DeclarativeLayout */; };
+		E8127BDF26DC014F00F073BD /* DessertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BDE26DC014F00F073BD /* DessertCell.swift */; };
 		E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D129F26DBCA6F00449161 /* AppDelegate.swift */; };
 		E82D12A226DBCA6F00449161 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D12A126DBCA6F00449161 /* SceneDelegate.swift */; };
 		E82D12A926DBCA7800449161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82D12A826DBCA7800449161 /* Assets.xcassets */; };
@@ -16,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		E8127BCF26DBF98600F073BD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E8127BDE26DC014F00F073BD /* DessertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertCell.swift; sourceTree = "<group>"; };
 		E82D129C26DBCA6F00449161 /* FamousDesserts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamousDesserts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82D129F26DBCA6F00449161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E82D12A126DBCA6F00449161 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8127BDA26DBFF3600F073BD /* DeclarativeLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +45,23 @@
 				E8127BCF26DBF98600F073BD /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E8127BDD26DC013F00F073BD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E8127BDE26DC014F00F073BD /* DessertCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E8127BE226DC022B00F073BD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E82D129F26DBCA6F00449161 /* AppDelegate.swift */,
+				E82D12A126DBCA6F00449161 /* SceneDelegate.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		E82D129326DBCA6F00449161 = {
@@ -62,9 +83,9 @@
 		E82D129E26DBCA6F00449161 /* FamousDesserts */ = {
 			isa = PBXGroup;
 			children = (
+				E8127BE226DC022B00F073BD /* Base */,
+				E8127BDD26DC013F00F073BD /* Cell */,
 				E8127BCE26DBF97600F073BD /* ViewControllers */,
-				E82D129F26DBCA6F00449161 /* AppDelegate.swift */,
-				E82D12A126DBCA6F00449161 /* SceneDelegate.swift */,
 				E82D12A826DBCA7800449161 /* Assets.xcassets */,
 				E82D12AA26DBCA7800449161 /* LaunchScreen.storyboard */,
 				E82D12AD26DBCA7800449161 /* Info.plist */,
@@ -88,6 +109,9 @@
 			dependencies = (
 			);
 			name = FamousDesserts;
+			packageProductDependencies = (
+				E8127BD926DBFF3600F073BD /* DeclarativeLayout */,
+			);
 			productName = FamousDesserts;
 			productReference = E82D129C26DBCA6F00449161 /* FamousDesserts.app */;
 			productType = "com.apple.product-type.application";
@@ -115,6 +139,9 @@
 				Base,
 			);
 			mainGroup = E82D129326DBCA6F00449161;
+			packageReferences = (
+				E8127BD826DBFF3600F073BD /* XCRemoteSwiftPackageReference "DeclarativeLayout" */,
+			);
 			productRefGroup = E82D129D26DBCA6F00449161 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,6 +170,7 @@
 			files = (
 				E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */,
 				E82D12A226DBCA6F00449161 /* SceneDelegate.swift in Sources */,
+				E8127BDF26DC014F00F073BD /* DessertCell.swift in Sources */,
 				E8127BD026DBF98600F073BD /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +365,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8127BD826DBFF3600F073BD /* XCRemoteSwiftPackageReference "DeclarativeLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aybekckaya/DeclarativeLayout.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E8127BD926DBFF3600F073BD /* DeclarativeLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8127BD826DBFF3600F073BD /* XCRemoteSwiftPackageReference "DeclarativeLayout" */;
+			productName = DeclarativeLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E82D129426DBCA6F00449161 /* Project object */;
 }

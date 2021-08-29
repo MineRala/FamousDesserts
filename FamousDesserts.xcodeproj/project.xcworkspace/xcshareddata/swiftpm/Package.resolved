@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DeclarativeLayout",
+        "repositoryURL": "https://github.com/aybekckaya/DeclarativeLayout.git",
+        "state": {
+          "branch": null,
+          "revision": "9cf3352ecb64aae4f44af51b683f456e80c9f423",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
