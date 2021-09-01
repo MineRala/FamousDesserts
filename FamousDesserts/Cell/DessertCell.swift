@@ -13,16 +13,21 @@ class DessertCell: UITableViewCell {
     
     private let dessertImage : UIImageView = {
         let dı = UIImageView(frame: .zero)
+        dı.translatesAutoresizingMaskIntoConstraints = false
+        dı.layer.cornerRadius = 16
+        dı.clipsToBounds = true
         return dı
     }()
     
     private let dessertName: UILabel = {
         let dn = UILabel(frame: .zero)
+        dn.translatesAutoresizingMaskIntoConstraints = false
         return dn
     }()
     
     private let dessertCountry: UILabel = {
         let dc = UILabel(frame: .zero)
+        dc.translatesAutoresizingMaskIntoConstraints = false
         return dc
     }()
     
@@ -36,6 +41,24 @@ class DessertCell: UITableViewCell {
     }
     
     private func setUpUI(){
-        self.contentView.backgroundColor = .blue
+        self.contentView.backgroundColor = .clear
+      
+        self.contentView.addSubview(dessertImage)
+        dessertImage.topAnchor(margin: 16).leadingAnchor(margin: 16).trailingAnchor(margin: 16).heightAnchor(300)
+        
+        self.contentView.addSubview(dessertName)
+        dessertName.centerXAnchor(margin: 0)
+        dessertName.topAnchor.constraint(equalTo: dessertImage.bottomAnchor, constant: 16).isActive = true
+        
+        self.contentView.addSubview(dessertCountry)
+        dessertCountry.centerXAnchor(margin: 0)
+        dessertCountry.topAnchor.constraint(equalTo: dessertName.bottomAnchor, constant: 8).isActive = true
+        
+    }
+    
+    func updateCell(dessert:Dessert) {
+        dessertImage.image = dessert.image
+        dessertName.text = dessert.name
+        dessertCountry.text = dessert.country
     }
 }

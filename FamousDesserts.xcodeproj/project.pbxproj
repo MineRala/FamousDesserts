@@ -10,6 +10,9 @@
 		E8127BD026DBF98600F073BD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BCF26DBF98600F073BD /* HomeViewController.swift */; };
 		E8127BDA26DBFF3600F073BD /* DeclarativeLayout in Frameworks */ = {isa = PBXBuildFile; productRef = E8127BD926DBFF3600F073BD /* DeclarativeLayout */; };
 		E8127BDF26DC014F00F073BD /* DessertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BDE26DC014F00F073BD /* DessertCell.swift */; };
+		E8127BE626DC33BB00F073BD /* Dessert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BE526DC33BB00F073BD /* Dessert.swift */; };
+		E8146C9F26DE524600101F58 /* AddDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8146C9E26DE524600101F58 /* AddDessertViewController.swift */; };
+		E8146CA226DE5A8E00101F58 /* DetailDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */; };
 		E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D129F26DBCA6F00449161 /* AppDelegate.swift */; };
 		E82D12A226DBCA6F00449161 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D12A126DBCA6F00449161 /* SceneDelegate.swift */; };
 		E82D12A926DBCA7800449161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82D12A826DBCA7800449161 /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 /* Begin PBXFileReference section */
 		E8127BCF26DBF98600F073BD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E8127BDE26DC014F00F073BD /* DessertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertCell.swift; sourceTree = "<group>"; };
+		E8127BE526DC33BB00F073BD /* Dessert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dessert.swift; sourceTree = "<group>"; };
+		E8146C9E26DE524600101F58 /* AddDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDessertViewController.swift; sourceTree = "<group>"; };
+		E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDessertViewController.swift; sourceTree = "<group>"; };
 		E82D129C26DBCA6F00449161 /* FamousDesserts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamousDesserts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82D129F26DBCA6F00449161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E82D12A126DBCA6F00449161 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +49,8 @@
 			isa = PBXGroup;
 			children = (
 				E8127BCF26DBF98600F073BD /* HomeViewController.swift */,
+				E8146C9E26DE524600101F58 /* AddDessertViewController.swift */,
+				E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -64,6 +72,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		E8127BE426DC33B000F073BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E8127BE526DC33BB00F073BD /* Dessert.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E82D129326DBCA6F00449161 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +99,7 @@
 		E82D129E26DBCA6F00449161 /* FamousDesserts */ = {
 			isa = PBXGroup;
 			children = (
+				E8127BE426DC33B000F073BD /* Model */,
 				E8127BE226DC022B00F073BD /* Base */,
 				E8127BDD26DC013F00F073BD /* Cell */,
 				E8127BCE26DBF97600F073BD /* ViewControllers */,
@@ -168,10 +185,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8127BE626DC33BB00F073BD /* Dessert.swift in Sources */,
 				E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */,
+				E8146CA226DE5A8E00101F58 /* DetailDessertViewController.swift in Sources */,
 				E82D12A226DBCA6F00449161 /* SceneDelegate.swift in Sources */,
 				E8127BDF26DC014F00F073BD /* DessertCell.swift in Sources */,
 				E8127BD026DBF98600F073BD /* HomeViewController.swift in Sources */,
+				E8146C9F26DE524600101F58 /* AddDessertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
