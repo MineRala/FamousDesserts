@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navCon = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = navCon
         self.window?.makeKeyAndVisible()
+        self.window?.backgroundColor = .white
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

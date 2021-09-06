@@ -8,39 +8,37 @@
 import Foundation
 import UIKit
 import DeclarativeLayout
-import DeclarativeTableView
 
 
-class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating{
-  
-    private var arrDesserts: [Dessert] = []
-    private var arrFiltered: [Dessert] = []
+class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating, AddNewDessertDelegate{
+   
+    private var homeViewModel = HomeViewModel()
     
     private let searchController = UISearchController( searchResultsController: nil)
     
-    private let dessertTableView :UITableView  = {
+    
+    private lazy var dessertTableView: UITableView  = {
         let dtv = UITableView(frame: .zero, style: .plain)
+        dtv.separatorStyle = .none
         dtv.translatesAutoresizingMaskIntoConstraints = false
         return dtv
     }()
     
-   
+    private lazy var emptyLabel: UILabel = {
+        let el = UILabel(frame: .zero)
+        el.translatesAutoresizingMaskIntoConstraints = false
+        el.text = "Empty List"
+        el.textAlignment = .center
+        el.textColor = .black
+        el.backgroundColor = .clear
+        el.numberOfLines = 0
+        el.font = UIFont(name:"Helvetica Neue Light", size: 24)
+        return el
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-        dessertTableView.separatorStyle = .none
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-
-
-
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     private func setUpUI() {
@@ -56,6 +54,12 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
             .leadingAnchor(margin: 0)
             .trailingAnchor(margin: 0)
         
+        self.view.addSubview(emptyLabel)
+        
+        emptyLabel
+            .centerXAnchor(margin: 0)
+            .centerYAnchor(margin: 0)
+        
         dessertTableView.dataSource = self
         dessertTableView.delegate = self
         
@@ -67,36 +71,43 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
 
-        arrDesserts = Dessert.all()
-        arrFiltered = arrDesserts
-        dessertTableView.reloadData()
-    
+        homeViewModel.initializeArrays()
+        reloadDessertTableView()
+        
     }
     
+    private func reloadDessertTableView() {
+        if homeViewModel.arrFilteredDesserts.count == 0 {
+            emptyLabel.isHidden = false
+            dessertTableView.isHidden = true
+        }else{
+            dessertTableView.isHidden = false
+            emptyLabel.isHidden = true
+        }
+        dessertTableView.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrFiltered.count
+        return homeViewModel.arrFilteredDesserts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "DessertCell", for: indexPath) as! DessertCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        let dessert = arrFiltered[indexPath.row]
+        let dessert = homeViewModel.arrFilteredDesserts[indexPath.row]
         cell.updateCell(dessert: dessert)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailDessertViewController()
-        let dessert = arrFiltered[indexPath.row
-]
+       
+        let dessert = homeViewModel.arrFilteredDesserts[indexPath.row]
+        let detailVC = DetailDessertViewController(model: dessert)
         self.navigationController?.pushViewController(detailVC, animated: true)
-        
-        
     }
     
     private func configureNavigationBar() {
@@ -106,33 +117,93 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:#selector(addButtonTapped))
         self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-     
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
+        self.navigationItem.leftBarButtonItem?.tintColor = .orange
+        
+        
+        //En üstteki separator çizgisini saklamak için.
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        //  Navigation bar back button
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
     }
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = self.searchController.searchBar.text else {
             return
         }
-        
-        if searchText.count == 0 || searchText == ""{
-            arrFiltered = arrDesserts
-        }
-        else {
-            arrFiltered = arrDesserts.filter({ (dessert) -> Bool in
-                return dessert.name.lowercased().contains(searchText.lowercased()) || dessert.country.lowercased().contains(searchText.lowercased())
-            })
-        }
-        self.dessertTableView.reloadData()
+        homeViewModel.updateFilteredArray(with: searchText)
+        self.reloadDessertTableView()
     }
-    
     
     @objc func addButtonTapped(){
-        print("tapped")
-        let addVC = AddDessertViewController()
-        self.navigationController?.isNavigationBarHidden = true 
-        self.navigationController?.pushViewController(addVC, animated: true)
+        let addDessertVC = AddDessertViewController()
+        addDessertVC.delegate = self
+        self.navigationController?.pushViewController(addDessertVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "Delete") { [weak self] (action, view, completionHandler) in
+            guard let self = self else{
+                completionHandler(false)
+                return
+            }
+            
+            self.handleDelete(indexPath: indexPath)
+            completionHandler(true)
+        }
+        
+        delete.backgroundColor = .red
+        
+        let configuration = UISwipeActionsConfiguration(actions: [delete])
+        return configuration
+    }
+    
+    private func handleDelete(indexPath: IndexPath) {
+        Alerts.showAlertDelete(controller: self,"Are you sure you want to delete this dessert?", deletion: { [self] in
+            homeViewModel.removeItemFromArrayDessert(index: indexPath.row)
+            self.updateSearchResults(for: self.searchController)
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let update = UIContextualAction(style: .normal, title: "Update") { [weak self] (action, view, completionHandler) in
+            guard let self = self else {
+                completionHandler(false)
+                return
+            }
+            
+            self.updateButtonTapped(indexPath: indexPath)
+            completionHandler(true)
+        }
+        
+        update.backgroundColor = .orange
+        let configuration = UISwipeActionsConfiguration(actions: [update])
+        return configuration
+    }
+    
+    private func updateButtonTapped(indexPath: IndexPath) {
+        let updateDessertVC = AddDessertViewController()
+        updateDessertVC.addDessertViewModel.dessertState = .update
+        updateDessertVC.addDessertViewModel.dessert = homeViewModel.arrFilteredDesserts[indexPath.row]
+        updateDessertVC.delegate = self
+        self.navigationController?.pushViewController(updateDessertVC, animated: true)
+    }
+    
+    func passDessert(dessert: Dessert) {
+        homeViewModel.checkDessert(dessert: dessert)
+        updateSearchResults(for: self.searchController)
+        dessertTableView.reloadData()
+    }
+    
+    @objc func favoriteButtonTapped() {
+        let favoriteVC = FavoriteViewController()
 
-
+        self.navigationController?.pushViewController(favoriteVC, animated: true)
+    }
+    
 }
 

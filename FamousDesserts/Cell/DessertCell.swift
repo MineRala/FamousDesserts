@@ -11,7 +11,7 @@ import DeclarativeLayout
 
 class DessertCell: UITableViewCell {
     
-    private let dessertImage : UIImageView = {
+    lazy var dessertImage : UIImageView = {
         let dı = UIImageView(frame: .zero)
         dı.translatesAutoresizingMaskIntoConstraints = false
         dı.layer.cornerRadius = 16
@@ -19,13 +19,13 @@ class DessertCell: UITableViewCell {
         return dı
     }()
     
-    private let dessertName: UILabel = {
+    lazy var dessertName: UILabel = {
         let dn = UILabel(frame: .zero)
         dn.translatesAutoresizingMaskIntoConstraints = false
         return dn
     }()
     
-    private let dessertCountry: UILabel = {
+    lazy var dessertCountry: UILabel = {
         let dc = UILabel(frame: .zero)
         dc.translatesAutoresizingMaskIntoConstraints = false
         return dc
@@ -53,12 +53,20 @@ class DessertCell: UITableViewCell {
         self.contentView.addSubview(dessertCountry)
         dessertCountry.centerXAnchor(margin: 0)
         dessertCountry.topAnchor.constraint(equalTo: dessertName.bottomAnchor, constant: 8).isActive = true
+        dessertCountry.bottomAnchor(margin: 8)
         
     }
     
     func updateCell(dessert:Dessert) {
-        dessertImage.image = dessert.image
+        if dessert.imageUrl != nil {
+            let data =  NSData(contentsOf: dessert.imageUrl!)
+            dessertImage.image = UIImage(data: data! as Data )
+        }
+        else {
+            dessertImage.image = UIImage(named: dessert.image)
+        }
         dessertName.text = dessert.name
         dessertCountry.text = dessert.country
+       
     }
 }

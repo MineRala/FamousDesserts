@@ -13,10 +13,18 @@
 		E8127BE626DC33BB00F073BD /* Dessert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BE526DC33BB00F073BD /* Dessert.swift */; };
 		E8146C9F26DE524600101F58 /* AddDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8146C9E26DE524600101F58 /* AddDessertViewController.swift */; };
 		E8146CA226DE5A8E00101F58 /* DetailDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */; };
+		E82575E726E5FE1B002CE261 /* FavoriteDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82575E626E5FE1B002CE261 /* FavoriteDessertViewModel.swift */; };
+		E82575EA26E61999002CE261 /* FavoriteDessertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82575E926E61999002CE261 /* FavoriteDessertCell.swift */; };
+		E82575ED26E621E9002CE261 /* ImageDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82575EC26E621E9002CE261 /* ImageDessertViewController.swift */; };
 		E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D129F26DBCA6F00449161 /* AppDelegate.swift */; };
 		E82D12A226DBCA6F00449161 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D12A126DBCA6F00449161 /* SceneDelegate.swift */; };
 		E82D12A926DBCA7800449161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82D12A826DBCA7800449161 /* Assets.xcassets */; };
 		E82D12AC26DBCA7800449161 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E82D12AA26DBCA7800449161 /* LaunchScreen.storyboard */; };
+		E853E45D26E3B65C007AA0B5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E45C26E3B65C007AA0B5 /* HomeViewModel.swift */; };
+		E853E46526E3B9C2007AA0B5 /* AddDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E46426E3B9C2007AA0B5 /* AddDessertViewModel.swift */; };
+		E853E46826E3B9DD007AA0B5 /* DetailDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E46726E3B9DD007AA0B5 /* DetailDessertViewModel.swift */; };
+		E886D18726E500E6009156FD /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886D18626E500E6009156FD /* FavoriteViewController.swift */; };
+		E8CE7FAD26DFA31C00008601 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CE7FAC26DFA31C00008601 /* Alerts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,12 +33,20 @@
 		E8127BE526DC33BB00F073BD /* Dessert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dessert.swift; sourceTree = "<group>"; };
 		E8146C9E26DE524600101F58 /* AddDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDessertViewController.swift; sourceTree = "<group>"; };
 		E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDessertViewController.swift; sourceTree = "<group>"; };
+		E82575E626E5FE1B002CE261 /* FavoriteDessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDessertViewModel.swift; sourceTree = "<group>"; };
+		E82575E926E61999002CE261 /* FavoriteDessertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDessertCell.swift; sourceTree = "<group>"; };
+		E82575EC26E621E9002CE261 /* ImageDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDessertViewController.swift; sourceTree = "<group>"; };
 		E82D129C26DBCA6F00449161 /* FamousDesserts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamousDesserts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82D129F26DBCA6F00449161 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E82D12A126DBCA6F00449161 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E82D12A826DBCA7800449161 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E82D12AB26DBCA7800449161 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E82D12AD26DBCA7800449161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E853E45C26E3B65C007AA0B5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E853E46426E3B9C2007AA0B5 /* AddDessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDessertViewModel.swift; sourceTree = "<group>"; };
+		E853E46726E3B9DD007AA0B5 /* DetailDessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDessertViewModel.swift; sourceTree = "<group>"; };
+		E886D18626E500E6009156FD /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		E8CE7FAC26DFA31C00008601 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +67,8 @@
 				E8127BCF26DBF98600F073BD /* HomeViewController.swift */,
 				E8146C9E26DE524600101F58 /* AddDessertViewController.swift */,
 				E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */,
+				E886D18626E500E6009156FD /* FavoriteViewController.swift */,
+				E82575EC26E621E9002CE261 /* ImageDessertViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -59,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				E8127BDE26DC014F00F073BD /* DessertCell.swift */,
+				E82575E926E61999002CE261 /* FavoriteDessertCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -99,6 +118,8 @@
 		E82D129E26DBCA6F00449161 /* FamousDesserts */ = {
 			isa = PBXGroup;
 			children = (
+				E853E45B26E3B649007AA0B5 /* ViewModels */,
+				E8CE7FB026DFA69400008601 /* Alert */,
 				E8127BE426DC33B000F073BD /* Model */,
 				E8127BE226DC022B00F073BD /* Base */,
 				E8127BDD26DC013F00F073BD /* Cell */,
@@ -108,6 +129,25 @@
 				E82D12AD26DBCA7800449161 /* Info.plist */,
 			);
 			path = FamousDesserts;
+			sourceTree = "<group>";
+		};
+		E853E45B26E3B649007AA0B5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E853E45C26E3B65C007AA0B5 /* HomeViewModel.swift */,
+				E853E46426E3B9C2007AA0B5 /* AddDessertViewModel.swift */,
+				E853E46726E3B9DD007AA0B5 /* DetailDessertViewModel.swift */,
+				E82575E626E5FE1B002CE261 /* FavoriteDessertViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E8CE7FB026DFA69400008601 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				E8CE7FAC26DFA31C00008601 /* Alerts.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,11 +226,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8127BE626DC33BB00F073BD /* Dessert.swift in Sources */,
+				E853E45D26E3B65C007AA0B5 /* HomeViewModel.swift in Sources */,
+				E82575E726E5FE1B002CE261 /* FavoriteDessertViewModel.swift in Sources */,
 				E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */,
+				E886D18726E500E6009156FD /* FavoriteViewController.swift in Sources */,
+				E853E46526E3B9C2007AA0B5 /* AddDessertViewModel.swift in Sources */,
+				E82575EA26E61999002CE261 /* FavoriteDessertCell.swift in Sources */,
+				E853E46826E3B9DD007AA0B5 /* DetailDessertViewModel.swift in Sources */,
+				E8CE7FAD26DFA31C00008601 /* Alerts.swift in Sources */,
 				E8146CA226DE5A8E00101F58 /* DetailDessertViewController.swift in Sources */,
 				E82D12A226DBCA6F00449161 /* SceneDelegate.swift in Sources */,
 				E8127BDF26DC014F00F073BD /* DessertCell.swift in Sources */,
 				E8127BD026DBF98600F073BD /* HomeViewController.swift in Sources */,
+				E82575ED26E621E9002CE261 /* ImageDessertViewController.swift in Sources */,
 				E8146C9F26DE524600101F58 /* AddDessertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29JK24NZ4B;
 				INFOPLIST_FILE = FamousDesserts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -352,6 +401,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29JK24NZ4B;
 				INFOPLIST_FILE = FamousDesserts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
