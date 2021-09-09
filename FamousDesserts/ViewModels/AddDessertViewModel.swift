@@ -20,7 +20,7 @@ class AddDessertViewModel {
     
     var dessert: Dessert
     var dessertState = AddDessertViewControllerState.add
-    var urlOfSelectedImage: URL!
+    var dataOfSelectedImage: Data!
     var stateFavori: Bool = false
     
     

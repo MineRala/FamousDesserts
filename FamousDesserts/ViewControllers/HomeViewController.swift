@@ -200,8 +200,7 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     @objc func favoriteButtonTapped() {
-        let favoriteVC = FavoriteViewController()
-
+        let favoriteVC = FavoriteViewController(model: homeViewModel)
         self.navigationController?.pushViewController(favoriteVC, animated: true)
     }
     

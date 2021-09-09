@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E8127BD026DBF98600F073BD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BCF26DBF98600F073BD /* HomeViewController.swift */; };
-		E8127BDA26DBFF3600F073BD /* DeclarativeLayout in Frameworks */ = {isa = PBXBuildFile; productRef = E8127BD926DBFF3600F073BD /* DeclarativeLayout */; };
 		E8127BDF26DC014F00F073BD /* DessertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BDE26DC014F00F073BD /* DessertCell.swift */; };
 		E8127BE626DC33BB00F073BD /* Dessert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8127BE526DC33BB00F073BD /* Dessert.swift */; };
 		E8146C9F26DE524600101F58 /* AddDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8146C9E26DE524600101F58 /* AddDessertViewController.swift */; };
 		E8146CA226DE5A8E00101F58 /* DetailDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */; };
-		E82575E726E5FE1B002CE261 /* FavoriteDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82575E626E5FE1B002CE261 /* FavoriteDessertViewModel.swift */; };
 		E82575EA26E61999002CE261 /* FavoriteDessertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82575E926E61999002CE261 /* FavoriteDessertCell.swift */; };
 		E82575ED26E621E9002CE261 /* ImageDessertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82575EC26E621E9002CE261 /* ImageDessertViewController.swift */; };
 		E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D129F26DBCA6F00449161 /* AppDelegate.swift */; };
@@ -23,6 +21,7 @@
 		E853E45D26E3B65C007AA0B5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E45C26E3B65C007AA0B5 /* HomeViewModel.swift */; };
 		E853E46526E3B9C2007AA0B5 /* AddDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E46426E3B9C2007AA0B5 /* AddDessertViewModel.swift */; };
 		E853E46826E3B9DD007AA0B5 /* DetailDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E46726E3B9DD007AA0B5 /* DetailDessertViewModel.swift */; };
+		E861BE5E26E77E1900FBC720 /* DeclarativeLayout in Frameworks */ = {isa = PBXBuildFile; productRef = E861BE5D26E77E1900FBC720 /* DeclarativeLayout */; };
 		E886D18726E500E6009156FD /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886D18626E500E6009156FD /* FavoriteViewController.swift */; };
 		E8CE7FAD26DFA31C00008601 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CE7FAC26DFA31C00008601 /* Alerts.swift */; };
 /* End PBXBuildFile section */
@@ -33,7 +32,6 @@
 		E8127BE526DC33BB00F073BD /* Dessert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dessert.swift; sourceTree = "<group>"; };
 		E8146C9E26DE524600101F58 /* AddDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDessertViewController.swift; sourceTree = "<group>"; };
 		E8146CA126DE5A8E00101F58 /* DetailDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDessertViewController.swift; sourceTree = "<group>"; };
-		E82575E626E5FE1B002CE261 /* FavoriteDessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDessertViewModel.swift; sourceTree = "<group>"; };
 		E82575E926E61999002CE261 /* FavoriteDessertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDessertCell.swift; sourceTree = "<group>"; };
 		E82575EC26E621E9002CE261 /* ImageDessertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDessertViewController.swift; sourceTree = "<group>"; };
 		E82D129C26DBCA6F00449161 /* FamousDesserts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FamousDesserts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8127BDA26DBFF3600F073BD /* DeclarativeLayout in Frameworks */,
+				E861BE5E26E77E1900FBC720 /* DeclarativeLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +135,6 @@
 				E853E45C26E3B65C007AA0B5 /* HomeViewModel.swift */,
 				E853E46426E3B9C2007AA0B5 /* AddDessertViewModel.swift */,
 				E853E46726E3B9DD007AA0B5 /* DetailDessertViewModel.swift */,
-				E82575E626E5FE1B002CE261 /* FavoriteDessertViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -167,7 +164,7 @@
 			);
 			name = FamousDesserts;
 			packageProductDependencies = (
-				E8127BD926DBFF3600F073BD /* DeclarativeLayout */,
+				E861BE5D26E77E1900FBC720 /* DeclarativeLayout */,
 			);
 			productName = FamousDesserts;
 			productReference = E82D129C26DBCA6F00449161 /* FamousDesserts.app */;
@@ -197,7 +194,7 @@
 			);
 			mainGroup = E82D129326DBCA6F00449161;
 			packageReferences = (
-				E8127BD826DBFF3600F073BD /* XCRemoteSwiftPackageReference "DeclarativeLayout" */,
+				E861BE5C26E77E1900FBC720 /* XCRemoteSwiftPackageReference "DeclarativeLayout" */,
 			);
 			productRefGroup = E82D129D26DBCA6F00449161 /* Products */;
 			projectDirPath = "";
@@ -227,7 +224,6 @@
 			files = (
 				E8127BE626DC33BB00F073BD /* Dessert.swift in Sources */,
 				E853E45D26E3B65C007AA0B5 /* HomeViewModel.swift in Sources */,
-				E82575E726E5FE1B002CE261 /* FavoriteDessertViewModel.swift in Sources */,
 				E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */,
 				E886D18726E500E6009156FD /* FavoriteViewController.swift in Sources */,
 				E853E46526E3B9C2007AA0B5 /* AddDessertViewModel.swift in Sources */,
@@ -437,7 +433,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E8127BD826DBFF3600F073BD /* XCRemoteSwiftPackageReference "DeclarativeLayout" */ = {
+		E861BE5C26E77E1900FBC720 /* XCRemoteSwiftPackageReference "DeclarativeLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aybekckaya/DeclarativeLayout.git";
 			requirement = {
@@ -448,9 +444,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E8127BD926DBFF3600F073BD /* DeclarativeLayout */ = {
+		E861BE5D26E77E1900FBC720 /* DeclarativeLayout */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E8127BD826DBFF3600F073BD /* XCRemoteSwiftPackageReference "DeclarativeLayout" */;
+			package = E861BE5C26E77E1900FBC720 /* XCRemoteSwiftPackageReference "DeclarativeLayout" */;
 			productName = DeclarativeLayout;
 		};
 /* End XCSwiftPackageProductDependency section */

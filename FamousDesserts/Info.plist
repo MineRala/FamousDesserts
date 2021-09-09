@@ -62,5 +62,7 @@
 	<string>Allow Camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow Photos</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allow acc</string>
 </dict>
 </plist>

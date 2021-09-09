@@ -14,7 +14,7 @@ class Dessert {
     var description:String = ""
     var isFavorite: Bool = false
     var id: String = ""
-    var imageUrl: URL? = nil
+    var imageData: Data? = nil
     
     
     static func all() -> [Dessert] {

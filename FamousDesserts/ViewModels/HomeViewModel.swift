@@ -9,7 +9,7 @@ import Foundation
 
 class HomeViewModel {
     
-    private var arrDesserts: [Dessert] = []
+    var arrDesserts: [Dessert] = []
     var arrFilteredDesserts: [Dessert] = []
     
     func initializeArrays() {

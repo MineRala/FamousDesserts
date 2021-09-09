@@ -8,35 +8,72 @@
 import Foundation
 import UIKit
 
+enum PageBackground {
+    case removeBackground
+    case displayBackground
+}
 
 class ImageDessertViewController: UIViewController {
   
     var dessert = Dessert()
+    var pageBackgroundMode: PageBackground = .displayBackground
     
     lazy var dessertImage : UIImageView = {
         let dı = UIImageView(frame: .zero)
         dı.translatesAutoresizingMaskIntoConstraints = false
-        dı.backgroundColor = .clear
         return dı
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isTranslucent = true
         setUpUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewIsTapped))
+        self.view.addGestureRecognizer(tap)
+    }
     
     private func setUpUI() {
-        self.view.backgroundColor = .white
-        
-        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-        
+      
+     
         self.view.addSubview(dessertImage)
-        dessertImage.centerXAnchor(margin: 0).centerYAnchor(margin: 0).heightAnchor(view.frame.height*0.6).widthAnchor(view.frame.width)
-        
-        dessertImage.image = UIImage(named: dessert.image)
-        
+//        let margins = self.view.layoutMargins
+//        dessertImage.topAnchor(margin: margins.top)
+//        dessertImage.centerXAnchor(margin: 0).widthAnchor(view.frame.width).centerYAnchor(margin: 0)
+          dessertImage.centerXAnchor(margin: 0).centerYAnchor(margin: 0).heightAnchor(self.view.frame.height).widthAnchor(self.view.frame.width)
+//        dessertImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -98).isActive = true
+//        dessertImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+    
     }
     
     
+    func setImage(image: UIImage) {
+        dessertImage.image = image
+        dessertImage.contentMode = .scaleAspectFit
+        
+    }
+    
+    @objc func viewIsTapped() {
+        switch pageBackgroundMode {
+        case .displayBackground:
+            self.view.backgroundColor = UIColor.black
+            self.view.isOpaque = false
+            self.pageBackgroundMode = .removeBackground
+            self.navigationController?.isNavigationBarHidden = true
+        case .removeBackground:
+            self.view.backgroundColor = UIColor.white
+            self.view.isOpaque = true
+            self.pageBackgroundMode = .displayBackground
+            self.navigationController?.isNavigationBarHidden = false
+        }
+    }
 }
+
+

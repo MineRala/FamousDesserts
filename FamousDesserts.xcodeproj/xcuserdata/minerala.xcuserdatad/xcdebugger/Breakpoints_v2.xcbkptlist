@@ -7,48 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7D8DF016-A71B-496F-B797-7D63B8C98609"
+            uuid = "04F8775B-C7CF-400E-BD66-CE4E1C588381"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FamousDesserts/ViewControllers/FavoriteViewController.swift"
+            filePath = "FamousDesserts/ViewControllers/AddDessertViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
+            landmarkName = "fixedOrientation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3DD6239E-0E1E-4362-93C8-2C1A99E427F6"
+            uuid = "08D03D07-DE6B-4730-8935-5BF768ECD1A7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FamousDesserts/ViewControllers/FavoriteViewController.swift"
+            filePath = "FamousDesserts/ViewControllers/AddDessertViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "fixedOrientation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E74F8B16-34A7-462D-B4E9-830E28B76C5B"
-            shouldBeEnabled = "Yes"
+            uuid = "9670BCD1-980D-4AB2-BA6E-F846E1FBE662"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FamousDesserts/ViewControllers/FavoriteViewController.swift"
+            filePath = "FamousDesserts/ViewControllers/ImageDessertViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "setUpUI()"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidDisappear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

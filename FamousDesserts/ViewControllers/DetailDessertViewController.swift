@@ -20,8 +20,7 @@ class DetailDessertViewController: UIViewController {
         dı.layer.cornerRadius = 16
         dı.clipsToBounds = true
         dı.isUserInteractionEnabled = true
-        let topGesture = UITapGestureRecognizer(target: self, action: #selector(dessertImageTapped))
-        dı.addGestureRecognizer(topGesture)
+        
         return dı
     }()
     
@@ -87,6 +86,8 @@ class DetailDessertViewController: UIViewController {
             .heightAnchor(180)
         
         dessertImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        let topGesture = UITapGestureRecognizer(target: self, action: #selector(dessertImageTapped))
+        dessertImage.addGestureRecognizer(topGesture)
         
         self.view.addSubview(dessertInfo)
         dessertInfo.addArrangedSubview(dessertName)
@@ -94,6 +95,8 @@ class DetailDessertViewController: UIViewController {
         dessertInfo.addArrangedSubview(dessertStar)
         self.view.addSubview(dessertDescription)
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
         
         dessertInfo.topAnchor.constraint(equalTo: dessertImage.bottomAnchor, constant: 8).isActive = true
         dessertInfo.leadingAnchor(margin: 28).trailingAnchor(margin: 28).heightAnchor(64)
@@ -105,9 +108,8 @@ class DetailDessertViewController: UIViewController {
         dessertInfo.backgroundColor = .white
         dessertDescription.backgroundColor = .white
         
-        if detailDessertViewModel.dessert.imageUrl != nil {
-            let data = try! NSData(contentsOf: detailDessertViewModel.dessert.imageUrl!) as Data
-            dessertImage.image = UIImage(data: data)
+        if detailDessertViewModel.dessert.imageData != nil {
+            dessertImage.image = UIImage(data: detailDessertViewModel.dessert.imageData!)
           
         }else{
             dessertImage.image = UIImage(named: detailDessertViewModel.dessert.image)
@@ -120,6 +122,7 @@ class DetailDessertViewController: UIViewController {
         
         if detailDessertViewModel.dessert.isFavorite == true{
             dessertStar.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            
         }else{
             dessertStar.setImage(UIImage(systemName: "star"), for: .normal)
         }
@@ -128,6 +131,7 @@ class DetailDessertViewController: UIViewController {
     
     @objc func dessertImageTapped() {
         let imageDessertVC = ImageDessertViewController()
+        imageDessertVC.setImage(image: dessertImage.image!)
         self.navigationController?.pushViewController(imageDessertVC, animated: true)
     }
 

@@ -58,9 +58,8 @@ class DessertCell: UITableViewCell {
     }
     
     func updateCell(dessert:Dessert) {
-        if dessert.imageUrl != nil {
-            let data =  NSData(contentsOf: dessert.imageUrl!)
-            dessertImage.image = UIImage(data: data! as Data )
+        if dessert.imageData != nil {
+            dessertImage.image = UIImage(data: dessert.imageData! )
         }
         else {
             dessertImage.image = UIImage(named: dessert.image)

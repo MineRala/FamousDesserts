@@ -162,11 +162,10 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         if addDessertViewModel.dessertState == .update {
             self.placeholdertText.isHidden = true
             
-            if addDessertViewModel.dessert.imageUrl == nil{
+            if addDessertViewModel.dessert.imageData == nil{
                 dessertImage.image = UIImage(named: addDessertViewModel.dessert.image)
             }else{
-                let data = NSData(contentsOf: addDessertViewModel.dessert.imageUrl!)
-                dessertImage.image = UIImage(data: data! as Data)
+                dessertImage.image = UIImage(data: addDessertViewModel.dessert.imageData!)
             }
             
             dessertName.text = addDessertViewModel.dessert.name
@@ -242,12 +241,13 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            dessertImage.image = selectedImage
-            addDessertViewModel.urlOfSelectedImage = (info[.imageURL] as! URL)
-        }else{
+        guard let selectedImage = info[.originalImage] as? UIImage else {
             print("Image Not Found!")
+            return
         }
+        let oriantedImage = selectedImage.fixedOrientation()
+        dessertImage.image = oriantedImage
+        addDessertViewModel.dataOfSelectedImage = oriantedImage.pngData()
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -271,7 +271,7 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         if addDessertViewModel.dessertState == .add {
             addDessertViewModel.dessert = Dessert()
             addDessertViewModel.dessert.id = UUID().uuidString
-            addDessertViewModel.dessert.imageUrl = addDessertViewModel.urlOfSelectedImage
+            addDessertViewModel.dessert.imageData = addDessertViewModel.dataOfSelectedImage
             addDessertViewModel.dessert.name = dessertName.text!
             addDessertViewModel.dessert.country = dessertCountry.text!
             addDessertViewModel.dessert.description = dessertDescription.text!
@@ -279,8 +279,8 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
             self.delegate.passDessert(dessert: addDessertViewModel.dessert)
             self.dismiss(animated: true, completion: nil)
         }else {
-            if addDessertViewModel.urlOfSelectedImage != nil {
-                addDessertViewModel.dessert.imageUrl = addDessertViewModel.urlOfSelectedImage
+            if addDessertViewModel.dataOfSelectedImage != nil {
+                addDessertViewModel.dessert.imageData = addDessertViewModel.dataOfSelectedImage
                 addDessertViewModel.dessert.image = ""
             }
             addDessertViewModel.dessert.name = dessertName.text!
@@ -333,6 +333,63 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         }else{
             addDessertViewModel.stateFavori = false
             dessertStar.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+    }
+    
+    
+}
+
+extension UIImage {
+    func fixedOrientation() -> UIImage {
+
+        if imageOrientation == .up {
+            return self
+        }
+
+        var transform: CGAffineTransform = CGAffineTransform.identity
+
+        switch imageOrientation {
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: size.height)
+            transform = transform.rotated(by: CGFloat.pi)
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.rotated(by: CGFloat.pi / 2)
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: size.height)
+            transform = transform.rotated(by: CGFloat.pi / -2)
+        case .up, .upMirrored:
+            break
+        }
+
+        switch imageOrientation {
+        case .upMirrored, .downMirrored:
+            transform.translatedBy(x: size.width, y: 0)
+            transform.scaledBy(x: -1, y: 1)
+        case .leftMirrored, .rightMirrored:
+            transform.translatedBy(x: size.height, y: 0)
+            transform.scaledBy(x: -1, y: 1)
+        case .up, .down, .left, .right:
+            break
+        }
+
+        if let cgImage = self.cgImage, let colorSpace = cgImage.colorSpace,
+            let ctx: CGContext = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
+            ctx.concatenate(transform)
+
+            switch imageOrientation {
+            case .left, .leftMirrored, .right, .rightMirrored:
+                ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
+            default:
+                ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            }
+            if let ctxImage: CGImage = ctx.makeImage() {
+                return UIImage(cgImage: ctxImage)
+            } else {
+                return self
+            }
+        } else {
+            return self
         }
     }
 }
