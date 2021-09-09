@@ -11,7 +11,7 @@ import DeclarativeLayout
 
 class DessertCell: UITableViewCell {
     
-    lazy var dessertImage : UIImageView = {
+    private lazy var dessertImage : UIImageView = {
         let dı = UIImageView(frame: .zero)
         dı.translatesAutoresizingMaskIntoConstraints = false
         dı.layer.cornerRadius = 16
@@ -19,13 +19,13 @@ class DessertCell: UITableViewCell {
         return dı
     }()
     
-    lazy var dessertName: UILabel = {
+    private lazy var dessertName: UILabel = {
         let dn = UILabel(frame: .zero)
         dn.translatesAutoresizingMaskIntoConstraints = false
         return dn
     }()
     
-    lazy var dessertCountry: UILabel = {
+    private lazy var dessertCountry: UILabel = {
         let dc = UILabel(frame: .zero)
         dc.translatesAutoresizingMaskIntoConstraints = false
         return dc
@@ -39,7 +39,10 @@ class DessertCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+//MARK: - Set Up UI
+extension DessertCell {
     private func setUpUI(){
         self.contentView.backgroundColor = .clear
       
@@ -56,7 +59,10 @@ class DessertCell: UITableViewCell {
         dessertCountry.bottomAnchor(margin: 8)
         
     }
-    
+}
+
+//MARK: - Update Cell
+extension DessertCell {
     func updateCell(dessert:Dessert) {
         if dessert.imageData != nil {
             dessertImage.image = UIImage(data: dessert.imageData! )

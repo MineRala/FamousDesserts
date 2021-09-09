@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
+class AddDessertViewController: UIViewController {
  
     var delegate: AddNewDessertDelegate!
     var addDessertViewModel = AddDessertViewModel()
     
     private let imagePickerController = UIImagePickerController()
     
-    lazy var dessertImage : UIImageView = {
+    private lazy var dessertImage : UIImageView = {
         let dı = UIImageView(frame: .zero)
         dı.translatesAutoresizingMaskIntoConstraints = false
         dı.layer.cornerRadius = 16
@@ -26,7 +26,7 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         return dı
     }()
     
-    lazy var dessertName: UITextField = {
+    private lazy var dessertName: UITextField = {
         let dn = UITextField(frame: .zero)
         dn.placeholder = "Dessert Name"
         dn.autocorrectionType = .no
@@ -35,7 +35,7 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         return dn
     }()
     
-    lazy var dessertCountry: UITextField = {
+    private lazy var dessertCountry: UITextField = {
         let dc = UITextField(frame: .zero)
         dc.placeholder = "Dessert Country"
         dc.autocorrectionType = .no
@@ -44,7 +44,7 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         return dc
     }()
     
-    lazy var dessertDescription: UITextView = {
+    private lazy var dessertDescription: UITextView = {
         let dd = UITextView(frame: .zero)
         dd.isScrollEnabled = true
         dd.isEditable = true
@@ -55,14 +55,14 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         return dd
     }()
     
-    lazy var dessertStar: UIButton = {
+    private lazy var dessertStar: UIButton = {
         let ds = UIButton(frame: .zero)
         ds.tintColor = .orange
         ds.translatesAutoresizingMaskIntoConstraints = false
         return ds
     }()
     
-    lazy var dessertInfo: UIStackView = {
+    private lazy var dessertInfo: UIStackView = {
         let dı = UIStackView(frame: .zero)
         dı.axis = .horizontal
         dı.alignment = .fill
@@ -71,7 +71,7 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         return dı
     }()
     
-    lazy var placeholdertText: UILabel = {
+    private lazy var placeholdertText: UILabel = {
         let pt = UILabel(frame: .zero)
         pt.text = "Selecet Photo"
         pt.textColor = .black
@@ -80,7 +80,7 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         return pt
     }()
     
-    lazy var addButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let ab = UIButton(frame: .zero)
         ab.setTitle("Add", for: .normal)
         ab.setTitleColor(.black, for: .normal)
@@ -91,7 +91,7 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         return ab
     }()
     
-    lazy var removeImageButton: UIButton = {
+    private lazy var removeImageButton: UIButton = {
         let rb = UIButton(frame: .zero)
         rb.setImage(UIImage(systemName: "multiply.circle"), for: .normal)
         rb.tintColor = UIColor.black
@@ -100,7 +100,10 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         rb.translatesAutoresizingMaskIntoConstraints = false
         return rb
     }()
-    
+}
+
+//MARK: - Lifecycle
+extension AddDessertViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -114,7 +117,10 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         removeImageButton.layer.cornerRadius = removeImageButton.frame.height/2
         removeImageButton.layer.opacity = 0.5
     }
-    
+}
+   
+//MARK: - Set Up UI
+extension AddDessertViewController: UITextViewDelegate{
     private func setUpUI() {
         super.view.backgroundColor = .white
    
@@ -188,7 +194,10 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         
         dessertStar.addTarget(self, action: #selector(dessertStarTapped), for: .touchUpInside)
     }
-    
+}
+
+//MARK: Description TextView Delegate
+extension AddDessertViewController {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
@@ -202,33 +211,10 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
             textView.textColor = UIColor.lightGray
             }
     }
-    
-    @objc func dessertImageTapped() {
-        Alerts.showAlertImagePicker(controller: self, message: "Select Image From",
-        openCameraButtonClicked: { 
-            self.showImagePicker(selectedSource: .camera)
-            self.placeholdertText.isHidden = true
-            self.removeImageButton.isHidden = false
-        }, openLibraryButtonClicked: {
-            self.showImagePicker(selectedSource: .photoLibrary)
-            self.placeholdertText.isHidden = true
-            self.removeImageButton.isHidden = false
-        })
-    }
-    
-    @objc func addButtonTapped() {
-        if dessertDescription.text == "Description" || dessertDescription.text == "" {
-            Alerts.showAlertMissingText(controller: self, message: inValidatedFieldsMessage()) {}
-            return
-        }
-        guard validateDesserts() == true else {
-            Alerts.showAlertMissingText(controller: self, message: inValidatedFieldsMessage()) {}
-            return
-        }
-        saveNewDessert()
-        self.navigationController?.popViewController(animated: true)
-    }
-    
+}
+
+//MARK: - UIImagePicker Delegate
+extension AddDessertViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func showImagePicker(selectedSource: UIImagePickerController.SourceType) {
         guard UIImagePickerController.isSourceTypeAvailable(selectedSource) else {
             print("Selected source not available")
@@ -254,19 +240,10 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    @objc func removeImageButtonTapped(){
-        dessertImage.image = nil
-        placeholdertText.isHidden = false
-        removeImageButton.isHidden = true
-    }
+}
 
-    @objc func endEditing() {
-        self.dessertDescription.endEditing(true)
-        self.dessertName.endEditing(true)
-        self.dessertCountry.endEditing(true)
-    }
-    
+//MARK: - Save Dessert
+extension AddDessertViewController {
     private func saveNewDessert() {
         if addDessertViewModel.dessertState == .add {
             addDessertViewModel.dessert = Dessert()
@@ -292,7 +269,10 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
             self.dismiss(animated: true, completion: nil)
         }
     }
+}
 
+//MARK: - Validate Dessert & Message
+extension AddDessertViewController {
     private func validateDesserts () -> Bool {
         if dessertName.text?.count == 0 {
             return false
@@ -325,6 +305,47 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         }
         return str
     }
+}
+
+//MARK: - Actions
+extension AddDessertViewController {
+    @objc func dessertImageTapped() {
+        Alerts.showAlertImagePicker(controller: self, message: "Select Image From",
+        openCameraButtonClicked: { 
+            self.showImagePicker(selectedSource: .camera)
+            self.placeholdertText.isHidden = true
+            self.removeImageButton.isHidden = false
+        }, openLibraryButtonClicked: {
+            self.showImagePicker(selectedSource: .photoLibrary)
+            self.placeholdertText.isHidden = true
+            self.removeImageButton.isHidden = false
+        })
+    }
+    
+    @objc func addButtonTapped() {
+        if dessertDescription.text == "Description" || dessertDescription.text == "" {
+            Alerts.showAlertMissingText(controller: self, message: inValidatedFieldsMessage()) {}
+            return
+        }
+        guard validateDesserts() == true else {
+            Alerts.showAlertMissingText(controller: self, message: inValidatedFieldsMessage()) {}
+            return
+        }
+        saveNewDessert()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func removeImageButtonTapped(){
+        dessertImage.image = nil
+        placeholdertText.isHidden = false
+        removeImageButton.isHidden = true
+    }
+
+    @objc func endEditing() {
+        self.dessertDescription.endEditing(true)
+        self.dessertName.endEditing(true)
+        self.dessertCountry.endEditing(true)
+    }
     
     @objc func dessertStarTapped() {
         if addDessertViewModel.dessert.isFavorite == false{
@@ -333,63 +354,6 @@ class AddDessertViewController: UIViewController ,UITextViewDelegate, UIImagePic
         }else{
             addDessertViewModel.stateFavori = false
             dessertStar.setImage(UIImage(systemName: "star"), for: .normal)
-        }
-    }
-    
-    
-}
-
-extension UIImage {
-    func fixedOrientation() -> UIImage {
-
-        if imageOrientation == .up {
-            return self
-        }
-
-        var transform: CGAffineTransform = CGAffineTransform.identity
-
-        switch imageOrientation {
-        case .down, .downMirrored:
-            transform = transform.translatedBy(x: size.width, y: size.height)
-            transform = transform.rotated(by: CGFloat.pi)
-        case .left, .leftMirrored:
-            transform = transform.translatedBy(x: size.width, y: 0)
-            transform = transform.rotated(by: CGFloat.pi / 2)
-        case .right, .rightMirrored:
-            transform = transform.translatedBy(x: 0, y: size.height)
-            transform = transform.rotated(by: CGFloat.pi / -2)
-        case .up, .upMirrored:
-            break
-        }
-
-        switch imageOrientation {
-        case .upMirrored, .downMirrored:
-            transform.translatedBy(x: size.width, y: 0)
-            transform.scaledBy(x: -1, y: 1)
-        case .leftMirrored, .rightMirrored:
-            transform.translatedBy(x: size.height, y: 0)
-            transform.scaledBy(x: -1, y: 1)
-        case .up, .down, .left, .right:
-            break
-        }
-
-        if let cgImage = self.cgImage, let colorSpace = cgImage.colorSpace,
-            let ctx: CGContext = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
-            ctx.concatenate(transform)
-
-            switch imageOrientation {
-            case .left, .leftMirrored, .right, .rightMirrored:
-                ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
-            default:
-                ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-            }
-            if let ctxImage: CGImage = ctx.makeImage() {
-                return UIImage(cgImage: ctxImage)
-            } else {
-                return self
-            }
-        } else {
-            return self
         }
     }
 }

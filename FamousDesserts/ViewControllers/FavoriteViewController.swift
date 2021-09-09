@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class FavoriteViewController: UIViewController {
    
     var arrFavorited : [Dessert] = []
     var homeViewModel: HomeViewModel!
@@ -31,13 +31,18 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+//MARK: - Lifecycle
+extension FavoriteViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-       
     }
-    
+}
+
+//MARK: - Set Up UI
+extension FavoriteViewController {
     private func setUpUI() {
         self.view.backgroundColor = .white
         self.title = "Favorite Desserts"
@@ -64,10 +69,11 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
         
         favoriteDessertTableView.reloadData()
-        
     }
+}
     
-    
+//MARK: - UITableViewDelegate & UITableViewDataSource
+extension FavoriteViewController: UITableViewDelegate,UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrFavorited.count
     }
@@ -84,9 +90,9 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: true) // celli seçtikten sonraki griliği kaldırır.
-        let dessert = homeViewModel.arrFilteredDesserts[indexPath.row]
+        // celli seçtikten sonraki griliği kaldırır.
+        tableView.deselectRow(at: indexPath, animated: true)
+        let dessert = arrFavorited[indexPath.row]
         let detailVC = DetailDessertViewController(model: dessert)
         self.navigationController?.pushViewController(detailVC, animated: true)
     }

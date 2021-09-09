@@ -10,24 +10,23 @@ import UIKit
 
 class FavoriteDessertCell: UITableViewCell {
     
-    lazy var dessertName: UILabel = {
+    private lazy var dessertName: UILabel = {
         let dn = UILabel(frame: .zero)
         dn.translatesAutoresizingMaskIntoConstraints = false
         return dn
     }()
     
-    lazy var dessertCountry: UILabel = {
+    private lazy var dessertCountry: UILabel = {
         let dc = UILabel(frame: .zero)
         dc.translatesAutoresizingMaskIntoConstraints = false
         return dc
     }()
     
-    lazy var infoDessert: UIStackView = {
+    private lazy var infoDessert: UIStackView = {
         let id = UIStackView(frame: .zero)
         id.axis = .horizontal
         id.alignment = .firstBaseline
         id.distribution = .fillProportionally
-        id.spacing = 0
         return id
     }()
     
@@ -39,21 +38,26 @@ class FavoriteDessertCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+//MARK: - Set Up UI
+extension FavoriteDessertCell {
     private func setUpUI(){
         self.contentView.backgroundColor = .clear
-       
+        self.contentView.addSubview(dessertName)
+        self.contentView.addSubview(dessertCountry)
         
-        self.contentView.addSubview(infoDessert)
-        infoDessert.addArrangedSubview(dessertName)
-        infoDessert.addArrangedSubview(dessertCountry)
-        infoDessert.trailingAnchor(margin: 20).centerYAnchor(margin: 0).leadingAnchor(margin: 20)
-        
+        dessertName.leadingAnchor(margin: 20).centerYAnchor(margin: 0)
+        dessertName.widthAnchor.constraint(equalToConstant: self.frame.width/2).isActive = true
+        dessertCountry.trailingAnchor(margin: 20).centerYAnchor(margin: 0)
+        dessertCountry.widthAnchor(100)
     }
-    
+}
+
+//MARK: - Update Cell
+extension FavoriteDessertCell {
     func updateCell(dessert:Dessert) {
         dessertName.text = dessert.name
         dessertCountry.text = dessert.country
-       
     }
 }

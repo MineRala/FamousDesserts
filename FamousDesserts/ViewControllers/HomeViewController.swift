@@ -9,13 +9,10 @@ import Foundation
 import UIKit
 import DeclarativeLayout
 
-
-class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating, AddNewDessertDelegate{
+class HomeViewController: UIViewController , UISearchBarDelegate{
    
     private var homeViewModel = HomeViewModel()
-    
     private let searchController = UISearchController( searchResultsController: nil)
-    
     
     private lazy var dessertTableView: UITableView  = {
         let dtv = UITableView(frame: .zero, style: .plain)
@@ -35,14 +32,19 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
         el.font = UIFont(name:"Helvetica Neue Light", size: 24)
         return el
     }()
-    
+}
+
+//MARK: - Lifecycle
+extension HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
     }
-    
+}
+
+//MARK: - Set Up UI And Configure NavigationBar
+extension HomeViewController {
     private func setUpUI() {
-        
         configureNavigationBar()
         self.navigationController?.navigationBar.isTranslucent = false
         self.view.addSubview(dessertTableView)
@@ -76,6 +78,30 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
         
     }
     
+    private func configureNavigationBar() {
+        self.navigationItem.title = "Desserts"
+        let titleColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        let attributes = [NSAttributedString.Key.foregroundColor: titleColor , NSAttributedString.Key.font : UIFont(name:"Helvetica Neue Light", size: 24)]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:#selector(addButtonTapped))
+        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
+        self.navigationItem.leftBarButtonItem?.tintColor = .orange
+        
+        
+        //En üstteki separator çizgisini saklamak için.
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        //  Navigation bar back button
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+    }
+}
+
+//MARK: - TableViewDelegate & TableViewDataSource & ReloadTableView
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     private func reloadDessertTableView() {
         if homeViewModel.arrFilteredDesserts.count == 0 {
             emptyLabel.isHidden = false
@@ -108,41 +134,6 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
         let dessert = homeViewModel.arrFilteredDesserts[indexPath.row]
         let detailVC = DetailDessertViewController(model: dessert)
         self.navigationController?.pushViewController(detailVC, animated: true)
-    }
-    
-    private func configureNavigationBar() {
-        self.navigationItem.title = "Desserts"
-        let titleColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        let attributes = [NSAttributedString.Key.foregroundColor: titleColor , NSAttributedString.Key.font : UIFont(name:"Helvetica Neue Light", size: 24)]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:#selector(addButtonTapped))
-        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
-        self.navigationItem.leftBarButtonItem?.tintColor = .orange
-        
-        
-        //En üstteki separator çizgisini saklamak için.
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        //  Navigation bar back button
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = self.searchController.searchBar.text else {
-            return
-        }
-        homeViewModel.updateFilteredArray(with: searchText)
-        self.reloadDessertTableView()
-    }
-    
-    @objc func addButtonTapped(){
-        let addDessertVC = AddDessertViewController()
-        addDessertVC.delegate = self
-        self.navigationController?.pushViewController(addDessertVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -184,7 +175,27 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
         let configuration = UISwipeActionsConfiguration(actions: [update])
         return configuration
     }
+}
     
+//MARK: - Update SearchResult
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = self.searchController.searchBar.text else {
+            return
+        }
+        homeViewModel.updateFilteredArray(with: searchText)
+        self.reloadDessertTableView()
+    }
+}
+    
+//MARK: - Actions
+extension HomeViewController: AddNewDessertDelegate {
+    @objc func addButtonTapped(){
+        let addDessertVC = AddDessertViewController()
+        addDessertVC.delegate = self
+        self.navigationController?.pushViewController(addDessertVC, animated: true)
+    }
+
     private func updateButtonTapped(indexPath: IndexPath) {
         let updateDessertVC = AddDessertViewController()
         updateDessertVC.addDessertViewModel.dessertState = .update
@@ -193,16 +204,14 @@ class HomeViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.navigationController?.pushViewController(updateDessertVC, animated: true)
     }
     
-    func passDessert(dessert: Dessert) {
-        homeViewModel.checkDessert(dessert: dessert)
-        updateSearchResults(for: self.searchController)
-        dessertTableView.reloadData()
-    }
-    
     @objc func favoriteButtonTapped() {
         let favoriteVC = FavoriteViewController(model: homeViewModel)
         self.navigationController?.pushViewController(favoriteVC, animated: true)
     }
     
+    func passDessert(dessert: Dessert) {
+        homeViewModel.checkDessert(dessert: dessert)
+        updateSearchResults(for: self.searchController)
+        dessertTableView.reloadData()
+    }
 }
-

@@ -12,9 +12,8 @@ import DeclarativeLayout
 class DetailDessertViewController: UIViewController {
     
     var detailDessertViewModel: DetailDessertViewModel!
-    var delegate: ImageProtocol!
     
-    lazy var dessertImage : UIImageView = {
+    private lazy var dessertImage : UIImageView = {
         let dı = UIImageView(frame: .zero)
         dı.translatesAutoresizingMaskIntoConstraints = false
         dı.layer.cornerRadius = 16
@@ -24,19 +23,19 @@ class DetailDessertViewController: UIViewController {
         return dı
     }()
     
-    lazy var dessertName: UILabel = {
+    private lazy var dessertName: UILabel = {
         let dn = UILabel(frame: .zero)
         dn.translatesAutoresizingMaskIntoConstraints = false
         return dn
     }()
     
-    lazy var dessertCountry: UILabel = {
+    private lazy var dessertCountry: UILabel = {
         let dc = UILabel(frame: .zero)
         dc.translatesAutoresizingMaskIntoConstraints = false
         return dc
     }()
     
-    lazy var dessertStar: UIButton = {
+    private lazy var dessertStar: UIButton = {
         let ds = UIButton(frame: .zero)
         ds.tintColor = .orange
         ds.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +43,7 @@ class DetailDessertViewController: UIViewController {
         return ds
     }()
     
-    lazy var dessertDescription: UITextView = {
+    private lazy var dessertDescription: UITextView = {
         let dd = UITextView(frame: .zero)
         dd.isScrollEnabled = true
         dd.isEditable = false
@@ -53,7 +52,7 @@ class DetailDessertViewController: UIViewController {
         return dd
     }()
     
-    lazy var dessertInfo: UIStackView = {
+    private lazy var dessertInfo: UIStackView = {
         let dı = UIStackView(frame: .zero)
         dı.axis = .horizontal
         dı.alignment = .fill
@@ -62,7 +61,7 @@ class DetailDessertViewController: UIViewController {
         return dı
     }()
     
-    init(model: Dessert) {
+   init(model: Dessert) {
         super.init(nibName: nil, bundle: nil)
         self.detailDessertViewModel = DetailDessertViewModel(model: model)
     }
@@ -70,12 +69,18 @@ class DetailDessertViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+//MARK: - Lifecycle
+extension DetailDessertViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
     }
+}
 
+//MARK: - Set Up UI
+extension DetailDessertViewController {
     private func setUpUI() {
         super.view.backgroundColor = .white
 
@@ -128,7 +133,10 @@ class DetailDessertViewController: UIViewController {
         }
         
     }
-    
+}
+
+//MARK: - Actions
+extension DetailDessertViewController {
     @objc func dessertImageTapped() {
         let imageDessertVC = ImageDessertViewController()
         imageDessertVC.setImage(image: dessertImage.image!)

@@ -42,7 +42,9 @@ class HomeViewModel {
         if let currentIndex = index {
             arrDesserts.remove(at: currentIndex)
             arrDesserts.insert(dessert, at: currentIndex)
-        } else {
+        }
+        //add durumu
+        else {
             arrDesserts.append(dessert)
         }
     }

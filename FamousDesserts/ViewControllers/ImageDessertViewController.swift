@@ -18,12 +18,15 @@ class ImageDessertViewController: UIViewController {
     var dessert = Dessert()
     var pageBackgroundMode: PageBackground = .displayBackground
     
-    lazy var dessertImage : UIImageView = {
+    private lazy var dessertImage : UIImageView = {
         let dı = UIImageView(frame: .zero)
         dı.translatesAutoresizingMaskIntoConstraints = false
         return dı
     }()
-    
+}
+
+//MARK: - Lifecycle
+extension ImageDessertViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -39,11 +42,12 @@ class ImageDessertViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewIsTapped))
         self.view.addGestureRecognizer(tap)
     }
-    
+}
+
+//MARK: - Set Up UI
+extension ImageDessertViewController {
     private func setUpUI() {
-      
-     
-        self.view.addSubview(dessertImage)
+      self.view.addSubview(dessertImage)
 //        let margins = self.view.layoutMargins
 //        dessertImage.topAnchor(margin: margins.top)
 //        dessertImage.centerXAnchor(margin: 0).widthAnchor(view.frame.width).centerYAnchor(margin: 0)
@@ -52,14 +56,18 @@ class ImageDessertViewController: UIViewController {
 //        dessertImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
     
     }
-    
-    
+}
+
+//MARK: - Set Image
+extension ImageDessertViewController {
     func setImage(image: UIImage) {
         dessertImage.image = image
         dessertImage.contentMode = .scaleAspectFit
-        
     }
-    
+}
+
+//MARK: - Actions
+extension ImageDessertViewController {
     @objc func viewIsTapped() {
         switch pageBackgroundMode {
         case .displayBackground:

@@ -7,11 +7,6 @@
 
 import Foundation
 
-
-protocol ImageProtocol {
-    func image(dessert: Dessert)
-}
-
 class DetailDessertViewModel {
     
     var dessert : Dessert
