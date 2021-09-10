@@ -43,7 +43,7 @@ class FavoriteDessertCell: UITableViewCell {
 //MARK: - Set Up UI
 extension FavoriteDessertCell {
     private func setUpUI(){
-        self.contentView.backgroundColor = .clear
+        self.contentView.backgroundColor = C.Color.clearColor
         self.contentView.addSubview(dessertName)
         self.contentView.addSubview(dessertCountry)
         

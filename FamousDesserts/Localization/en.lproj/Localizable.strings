@@ -1,0 +1,32 @@
+/* 
+  Turkish.strings
+  FamousDesserts
+
+  Created by Mine Rala on 10.09.2021.
+  
+*/
+"Desserts" = "Desserts";
+"Search Dessert" = "Search Dessert";
+"Deletion Confirmation" = "Deletion Confirmation";
+"Delete" = "Delete";
+"Cancel" = "Cancel";
+"Select Photo" = "Select Photo";
+"Camera" =  "Camera";
+"Library" = "Library";
+"Missing Argument" = "Missing Argument";
+"Okey" = "Okey";
+"Empty List" = "Empty List";
+"Search Dessert" = "Search Dessert";
+"Are you sure you want to delete this dessert?" = "Are you sure you want to delete this dessert?";
+"Update" = "Update";
+"Dessert Name"  = "Dessert Name" ;
+"Dessert Country" = "Dessert Country";
+"Select Photo" = "Select Photo";
+"Add" = "Add";
+"Description" = "Description";
+"You must choose photo." = "You must choose photo.";
+"You must enter dessert name." = "You must enter dessert name.";
+"You must enter dessert country." = "You must enter dessert country.";
+"You must enter dessert description." = "You must enter dessert description.";
+"Favorite Desserts" = "Favorite Desserts";
+"Select Image From" = "Select Image From";

@@ -18,11 +18,13 @@
 		E82D12A226DBCA6F00449161 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D12A126DBCA6F00449161 /* SceneDelegate.swift */; };
 		E82D12A926DBCA7800449161 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82D12A826DBCA7800449161 /* Assets.xcassets */; };
 		E82D12AC26DBCA7800449161 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E82D12AA26DBCA7800449161 /* LaunchScreen.storyboard */; };
+		E82F025E26EA3E82002E02AE /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F025D26EA3E82002E02AE /* Configuration.swift */; };
 		E853E45D26E3B65C007AA0B5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E45C26E3B65C007AA0B5 /* HomeViewModel.swift */; };
 		E853E46526E3B9C2007AA0B5 /* AddDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E46426E3B9C2007AA0B5 /* AddDessertViewModel.swift */; };
 		E853E46826E3B9DD007AA0B5 /* DetailDessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853E46726E3B9DD007AA0B5 /* DetailDessertViewModel.swift */; };
 		E861BE5E26E77E1900FBC720 /* DeclarativeLayout in Frameworks */ = {isa = PBXBuildFile; productRef = E861BE5D26E77E1900FBC720 /* DeclarativeLayout */; };
 		E86F3B8F26EA25CD0058B7FF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86F3B8E26EA25CD0058B7FF /* UIImageExtension.swift */; };
+		E87B309326EB840800BE4A20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E87B309526EB840800BE4A20 /* Localizable.strings */; };
 		E886D18726E500E6009156FD /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886D18626E500E6009156FD /* FavoriteViewController.swift */; };
 		E8CE7FAD26DFA31C00008601 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CE7FAC26DFA31C00008601 /* Alerts.swift */; };
 /* End PBXBuildFile section */
@@ -41,10 +43,16 @@
 		E82D12A826DBCA7800449161 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E82D12AB26DBCA7800449161 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E82D12AD26DBCA7800449161 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E82F025D26EA3E82002E02AE /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		E853E45C26E3B65C007AA0B5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E853E46426E3B9C2007AA0B5 /* AddDessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDessertViewModel.swift; sourceTree = "<group>"; };
 		E853E46726E3B9DD007AA0B5 /* DetailDessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDessertViewModel.swift; sourceTree = "<group>"; };
 		E86F3B8E26EA25CD0058B7FF /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		E87B308726EB824C00BE4A20 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E87B309426EB840800BE4A20 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E87B30A926EB8FA600BE4A20 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E87B30AD26EB908300BE4A20 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E87B30B526EB93AF00BE4A20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E886D18626E500E6009156FD /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		E8CE7FAC26DFA31C00008601 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +126,8 @@
 		E82D129E26DBCA6F00449161 /* FamousDesserts */ = {
 			isa = PBXGroup;
 			children = (
+				E87B309726EB8B8F00BE4A20 /* Localization */,
+				E82F025C26EA3E69002E02AE /* Costants */,
 				E86F3B8D26EA25B70058B7FF /* Extensions */,
 				E853E45B26E3B649007AA0B5 /* ViewModels */,
 				E8CE7FB026DFA69400008601 /* Alert */,
@@ -130,6 +140,14 @@
 				E82D12AD26DBCA7800449161 /* Info.plist */,
 			);
 			path = FamousDesserts;
+			sourceTree = "<group>";
+		};
+		E82F025C26EA3E69002E02AE /* Costants */ = {
+			isa = PBXGroup;
+			children = (
+				E82F025D26EA3E82002E02AE /* Configuration.swift */,
+			);
+			path = Costants;
 			sourceTree = "<group>";
 		};
 		E853E45B26E3B649007AA0B5 /* ViewModels */ = {
@@ -148,6 +166,14 @@
 				E86F3B8E26EA25CD0058B7FF /* UIImageExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E87B309726EB8B8F00BE4A20 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				E87B309526EB840800BE4A20 /* Localizable.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		E8CE7FB026DFA69400008601 /* Alert */ = {
@@ -202,6 +228,8 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
+				es,
 			);
 			mainGroup = E82D129326DBCA6F00449161;
 			packageReferences = (
@@ -222,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E82D12AC26DBCA7800449161 /* LaunchScreen.storyboard in Resources */,
+				E87B309326EB840800BE4A20 /* Localizable.strings in Resources */,
 				E82D12A926DBCA7800449161 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +265,7 @@
 				E8127BE626DC33BB00F073BD /* Dessert.swift in Sources */,
 				E853E45D26E3B65C007AA0B5 /* HomeViewModel.swift in Sources */,
 				E82D12A026DBCA6F00449161 /* AppDelegate.swift in Sources */,
+				E82F025E26EA3E82002E02AE /* Configuration.swift in Sources */,
 				E886D18726E500E6009156FD /* FavoriteViewController.swift in Sources */,
 				E853E46526E3B9C2007AA0B5 /* AddDessertViewModel.swift in Sources */,
 				E82575EA26E61999002CE261 /* FavoriteDessertCell.swift in Sources */,
@@ -258,8 +288,20 @@
 			isa = PBXVariantGroup;
 			children = (
 				E82D12AB26DBCA7800449161 /* Base */,
+				E87B308726EB824C00BE4A20 /* tr */,
+				E87B30A926EB8FA600BE4A20 /* es */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E87B309526EB840800BE4A20 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E87B309426EB840800BE4A20 /* tr */,
+				E87B30AD26EB908300BE4A20 /* es */,
+				E87B30B526EB93AF00BE4A20 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -269,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -330,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -397,7 +441,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MineRala.FamousDesserts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -417,7 +461,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.MineRala.FamousDesserts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

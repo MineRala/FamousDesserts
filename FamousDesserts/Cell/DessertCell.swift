@@ -44,7 +44,7 @@ class DessertCell: UITableViewCell {
 //MARK: - Set Up UI
 extension DessertCell {
     private func setUpUI(){
-        self.contentView.backgroundColor = .clear
+        self.contentView.backgroundColor = C.Color.clearColor
       
         self.contentView.addSubview(dessertImage)
         dessertImage.topAnchor(margin: 16).leadingAnchor(margin: 16).trailingAnchor(margin: 16).heightAnchor(300)

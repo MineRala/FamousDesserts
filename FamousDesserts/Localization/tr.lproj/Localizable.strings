@@ -1,0 +1,33 @@
+/* 
+  Turkish.strings
+  FamousDesserts
+
+  Created by Mine Rala on 10.09.2021.
+  
+*/
+"Desserts" = "Tatlılar";
+"Search Dessert" = "Tatlı Ara";
+"Deletion Confirmation" = "Silme Onayı";
+"Delete" = "Sil";
+"Cancel" = "İptal";
+"Select Photo" = "Fotoğraf Seç";
+"Camera" = "Kamera";
+"Library" = "Galeri";
+"Missing Argument" = "Eksik Argüman";
+"Okey" = "Tamam";
+"Empty List" = "Boş Liste";
+"Search Dessert" = "Tatlı Ara";
+"Are you sure you want to delete this dessert?" = "Bu tatlıyı silmek istediğinizden emin misin?";
+"Update" = "Güncelle";
+"Dessert Name" = "Tatlı İsmi";
+"Dessert Country" = "Tatlı Ülkesi";
+"Select Photo" = "Fotoğraf Seç";
+"Add" = "Ekle";
+"Description" = "Açıklama";
+"You must choose photo." = "Fotoğraf seçmelisiniz.";
+"You must enter dessert name." = "Tatlı adını girmelisiniz.";
+"You must enter dessert country." = "Tatlı ülkesini girmelisiniz.";
+"You must enter dessert description." = "Tatlı açıklamasını girmelisiniz.";
+"Favorite Desserts" = "Favori Tatlılar";
+"Select Image From" = "Şuradan Görüntü Seçin";
+

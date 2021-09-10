@@ -1,0 +1,33 @@
+/* 
+  Turkish.strings
+  FamousDesserts
+
+  Created by Mine Rala on 10.09.2021.
+  
+*/
+"Desserts" = "Postres";
+"Search Dessert" = "Dulce Búsqueda";
+"Deletion Confirmation" = "Confirmación de eliminación";
+"Delete" = "Borrar";
+"Cancel" = "Cancelar";
+"Select Photo" = "Seleccione Foto";
+"Camera" = "Cámara";
+"Library" = "Biblioteca";
+"Missing Argument" = "Argumento faltante";
+"Okey" = "Bueno";
+"Empty List" = "Lista Vacía";
+"Search Dessert" = "Buscar Postre";
+"Are you sure you want to delete this dessert?" = "Estás seguro de que quieres borrar este postre?";
+"Update" = "Actualizar";
+"Dessert Name" = "Nombre del postre";
+"Dessert Country" = "País de los postres";
+"Select Photo" = "Seleccione Foto";
+"Add" = "Agregar";
+"Description" = "Descripción";
+"You must choose photo." = "Debes elegir la foto.";
+"You must enter dessert name." = "Debes ingresar el nombre del postre.";
+"You must enter dessert country." = "Debes entrar al dulce país.";
+"You must enter dessert description." = "Debes ingresar la descripción del postre.";
+"Favorite Desserts" = "Postres favoritos";
+"Select Image From" = "Seleccionar imagen de";
+

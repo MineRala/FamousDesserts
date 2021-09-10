@@ -21,12 +21,12 @@ class AddDessertViewModel {
     var dessert: Dessert
     var dessertState = AddDessertViewControllerState.add
     var dataOfSelectedImage: Data!
-    var stateFavori: Bool = false
-    
+    var stateFavorite: Bool = false
     
     init(model: Dessert? = nil ) {
         if model != nil {
             self.dessert = model!
+            self.stateFavorite = model!.isFavorite
         }else{
             dessert = Dessert()
         }

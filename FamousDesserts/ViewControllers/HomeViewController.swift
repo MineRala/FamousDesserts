@@ -24,12 +24,12 @@ class HomeViewController: UIViewController , UISearchBarDelegate{
     private lazy var emptyLabel: UILabel = {
         let el = UILabel(frame: .zero)
         el.translatesAutoresizingMaskIntoConstraints = false
-        el.text = "Empty List"
+        el.text = NSLocalizedString(C.Text.emptyList.rawValue, comment: "")
         el.textAlignment = .center
-        el.textColor = .black
-        el.backgroundColor = .clear
+        el.textColor = C.Color.blackColor
+        el.backgroundColor = C.Color.clearColor
         el.numberOfLines = 0
-        el.font = UIFont(name:"Helvetica Neue Light", size: 24)
+        el.font = UIFont(name: C.commonFont, size: 24)
         return el
     }()
 }
@@ -68,7 +68,7 @@ extension HomeViewController {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Dessert"
+        searchController.searchBar.placeholder = NSLocalizedString(C.Text.searchDessert.rawValue, comment: "")
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
@@ -79,24 +79,24 @@ extension HomeViewController {
     }
     
     private func configureNavigationBar() {
-        self.navigationItem.title = "Desserts"
-        let titleColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        let attributes = [NSAttributedString.Key.foregroundColor: titleColor , NSAttributedString.Key.font : UIFont(name:"Helvetica Neue Light", size: 24)]
+        self.navigationItem.title = NSLocalizedString(C.Text.desserts.rawValue, comment: "")
+        let titleColor = C.Color.blackColor
+        let attributes = [NSAttributedString.Key.foregroundColor: titleColor , NSAttributedString.Key.font : UIFont(name: C.commonFont, size: 24)]
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action:#selector(addButtonTapped))
-        self.navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        self.navigationItem.rightBarButtonItem?.tintColor = C.Color.rightButtonColor
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
-        self.navigationItem.leftBarButtonItem?.tintColor = .orange
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: C.ImageIcon.starFill.rawValue), style: .plain, target: self, action: #selector(favoriteButtonTapped))
+        self.navigationItem.leftBarButtonItem?.tintColor = C.Color.orangeColor
         
         
         //En üstteki separator çizgisini saklamak için.
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.backgroundColor = C.Color.whiteColor
         self.navigationController?.navigationBar.shadowImage = UIImage()
         //  Navigation bar back button
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        self.navigationItem.backBarButtonItem?.tintColor =  C.Color.backButtonColor
     }
 }
 
@@ -137,7 +137,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .normal, title: "Delete") { [weak self] (action, view, completionHandler) in
+        let delete = UIContextualAction(style: .normal, title:NSLocalizedString( C.Text.delete.rawValue, comment: "")) { [weak self] (action, view, completionHandler) in
             guard let self = self else{
                 completionHandler(false)
                 return
@@ -147,21 +147,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         
-        delete.backgroundColor = .red
+        delete.backgroundColor = C.Color.redColor
         
         let configuration = UISwipeActionsConfiguration(actions: [delete])
         return configuration
     }
     
     private func handleDelete(indexPath: IndexPath) {
-        Alerts.showAlertDelete(controller: self,"Are you sure you want to delete this dessert?", deletion: { [self] in
+        Alerts.showAlertDelete(controller: self,NSLocalizedString(C.Text.showAlertDeleteMessage.rawValue, comment: ""), deletion: { [self] in
             homeViewModel.removeItemFromArrayDessert(index: indexPath.row)
             self.updateSearchResults(for: self.searchController)
         })
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let update = UIContextualAction(style: .normal, title: "Update") { [weak self] (action, view, completionHandler) in
+        let update = UIContextualAction(style: .normal, title: NSLocalizedString(C.Text.update.rawValue, comment: "")) { [weak self] (action, view, completionHandler) in
             guard let self = self else {
                 completionHandler(false)
                 return
@@ -171,7 +171,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         
-        update.backgroundColor = .orange
+        update.backgroundColor = C.Color.orangeColor
         let configuration = UISwipeActionsConfiguration(actions: [update])
         return configuration
     }
@@ -197,9 +197,9 @@ extension HomeViewController: AddNewDessertDelegate {
     }
 
     private func updateButtonTapped(indexPath: IndexPath) {
-        let updateDessertVC = AddDessertViewController()
+        let selectedDessert = homeViewModel.arrFilteredDesserts[indexPath.row]
+        let updateDessertVC = AddDessertViewController(model: selectedDessert)
         updateDessertVC.addDessertViewModel.dessertState = .update
-        updateDessertVC.addDessertViewModel.dessert = homeViewModel.arrFilteredDesserts[indexPath.row]
         updateDessertVC.delegate = self
         self.navigationController?.pushViewController(updateDessertVC, animated: true)
     }

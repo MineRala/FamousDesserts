@@ -71,12 +71,12 @@ extension ImageDessertViewController {
     @objc func viewIsTapped() {
         switch pageBackgroundMode {
         case .displayBackground:
-            self.view.backgroundColor = UIColor.black
+            self.view.backgroundColor = C.Color.whiteColor
             self.view.isOpaque = false
             self.pageBackgroundMode = .removeBackground
             self.navigationController?.isNavigationBarHidden = true
         case .removeBackground:
-            self.view.backgroundColor = UIColor.white
+            self.view.backgroundColor = C.Color.whiteColor
             self.view.isOpaque = true
             self.pageBackgroundMode = .displayBackground
             self.navigationController?.isNavigationBarHidden = false

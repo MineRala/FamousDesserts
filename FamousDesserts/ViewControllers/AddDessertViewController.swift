@@ -11,7 +11,7 @@ import UIKit
 class AddDessertViewController: UIViewController {
  
     var delegate: AddNewDessertDelegate!
-    var addDessertViewModel = AddDessertViewModel()
+    var addDessertViewModel: AddDessertViewModel!
     
     private let imagePickerController = UIImagePickerController()
     
@@ -28,7 +28,7 @@ class AddDessertViewController: UIViewController {
     
     private lazy var dessertName: UITextField = {
         let dn = UITextField(frame: .zero)
-        dn.placeholder = "Dessert Name"
+        dn.placeholder = NSLocalizedString(C.Text.dessertName.rawValue, comment: "")
         dn.autocorrectionType = .no
         dn.autocapitalizationType = .sentences
         dn.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class AddDessertViewController: UIViewController {
     
     private lazy var dessertCountry: UITextField = {
         let dc = UITextField(frame: .zero)
-        dc.placeholder = "Dessert Country"
+        dc.placeholder = NSLocalizedString(C.Text.dessertCountry.rawValue, comment: "")
         dc.autocorrectionType = .no
         dc.autocapitalizationType = .sentences
         dc.translatesAutoresizingMaskIntoConstraints = false
@@ -50,14 +50,14 @@ class AddDessertViewController: UIViewController {
         dd.isEditable = true
         dd.autocorrectionType = .no
         dd.autocapitalizationType = .sentences
-        dd.font = UIFont(name:"Helvetica Neue Light", size: 24)
+        dd.font = UIFont(name: C.commonFont, size: 24)
         dd.translatesAutoresizingMaskIntoConstraints = false
         return dd
     }()
     
     private lazy var dessertStar: UIButton = {
         let ds = UIButton(frame: .zero)
-        ds.tintColor = .orange
+        ds.tintColor = C.Color.orangeColor
         ds.translatesAutoresizingMaskIntoConstraints = false
         return ds
     }()
@@ -73,33 +73,42 @@ class AddDessertViewController: UIViewController {
     
     private lazy var placeholdertText: UILabel = {
         let pt = UILabel(frame: .zero)
-        pt.text = "Selecet Photo"
-        pt.textColor = .black
-        pt.font = UIFont(name:"Helvetica Neue Light", size: 16)
+        pt.text = NSLocalizedString(C.Text.selectPhoto.rawValue, comment: "")
+        pt.textColor = C.Color.blackColor
+        pt.font = UIFont(name: C.commonFont, size: 16)
         pt.isUserInteractionEnabled = false
         return pt
     }()
     
     private lazy var addButton: UIButton = {
         let ab = UIButton(frame: .zero)
-        ab.setTitle("Add", for: .normal)
-        ab.setTitleColor(.black, for: .normal)
+        ab.setTitle(NSLocalizedString(C.Text.add.rawValue, comment: ""), for: .normal)
+        ab.setTitleColor(C.Color.blackColor, for: .normal)
         ab.layer.cornerRadius = 16
-        ab.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-        ab.titleLabel?.font = UIFont(name:"Helvetica Neue Light", size: 16)
+        ab.backgroundColor = C.Color.addButtonColor
+        ab.titleLabel?.font = UIFont(name: C.commonFont, size: 16)
         ab.translatesAutoresizingMaskIntoConstraints = false
         return ab
     }()
     
     private lazy var removeImageButton: UIButton = {
         let rb = UIButton(frame: .zero)
-        rb.setImage(UIImage(systemName: "multiply.circle"), for: .normal)
-        rb.tintColor = UIColor.black
-        rb.backgroundColor = UIColor.systemGray5
+        rb.setImage(UIImage(systemName: C.ImageIcon.multiplyCircle.rawValue), for: .normal)
+        rb.tintColor = C.Color.blackColor
+        rb.backgroundColor = C.Color.grayColor
         rb.isHidden = true
         rb.translatesAutoresizingMaskIntoConstraints = false
         return rb
     }()
+
+    init(model: Dessert? = nil) {
+        super.init(nibName: nil, bundle: nil)
+        self.addDessertViewModel = AddDessertViewModel(model: model)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 //MARK: - Lifecycle
@@ -122,10 +131,10 @@ extension AddDessertViewController {
 //MARK: - Set Up UI
 extension AddDessertViewController: UITextViewDelegate{
     private func setUpUI() {
-        super.view.backgroundColor = .white
+        super.view.backgroundColor = C.Color.whiteColor
    
         self.view.addSubview(dessertImage)
-        dessertImage.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        dessertImage.backgroundColor = C.Color.dessertImageBackgroundColor
         dessertImage.topAnchor(margin: 0)
             .trailingAnchor(margin: 16)
             .heightAnchor(180)
@@ -177,19 +186,19 @@ extension AddDessertViewController: UITextViewDelegate{
             dessertName.text = addDessertViewModel.dessert.name
             dessertCountry.text = addDessertViewModel.dessert.country
             dessertDescription.text = addDessertViewModel.dessert.description
-            addButton.setTitle("Update", for: .normal)
+            addButton.setTitle(NSLocalizedString(C.Text.update.rawValue, comment: ""), for: .normal)
         }
         // dessertState == .add olduğunda descriptionda placeholder görmek için yapıldı.
         else {
-            dessertDescription.text = "Description"
+            dessertDescription.text = NSLocalizedString(C.Text.description.rawValue, comment: "")
             dessertDescription.delegate = self
-            dessertDescription.textColor = UIColor.lightGray
+            dessertDescription.textColor = C.Color.lightColor
         }
         
         if addDessertViewModel.dessert.isFavorite == true{
-            dessertStar.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            dessertStar.setImage(UIImage(systemName: C.ImageIcon.starFill.rawValue), for: .normal)
         }else{
-            dessertStar.setImage(UIImage(systemName: "star"), for: .normal)
+            dessertStar.setImage(UIImage(systemName: C.ImageIcon.star.rawValue), for: .normal)
         }
         
         dessertStar.addTarget(self, action: #selector(dessertStarTapped), for: .touchUpInside)
@@ -199,16 +208,16 @@ extension AddDessertViewController: UITextViewDelegate{
 //MARK: Description TextView Delegate
 extension AddDessertViewController {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == C.Color.lightColor {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = C.Color.blackColor
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Description"
-            textView.textColor = UIColor.lightGray
+            textView.text = NSLocalizedString(C.Text.description.rawValue, comment: "")
+            textView.textColor = C.Color.lightColor
             }
     }
 }
@@ -252,7 +261,7 @@ extension AddDessertViewController {
             addDessertViewModel.dessert.name = dessertName.text!
             addDessertViewModel.dessert.country = dessertCountry.text!
             addDessertViewModel.dessert.description = dessertDescription.text!
-            addDessertViewModel.dessert.isFavorite = addDessertViewModel.stateFavori
+            addDessertViewModel.dessert.isFavorite = addDessertViewModel.stateFavorite
             self.delegate.passDessert(dessert: addDessertViewModel.dessert)
             self.dismiss(animated: true, completion: nil)
         }else {
@@ -263,9 +272,8 @@ extension AddDessertViewController {
             addDessertViewModel.dessert.name = dessertName.text!
             addDessertViewModel.dessert.country = dessertCountry.text!
             addDessertViewModel.dessert.description = dessertDescription.text!
-            addDessertViewModel.dessert.isFavorite = addDessertViewModel.stateFavori
+            addDessertViewModel.dessert.isFavorite = addDessertViewModel.stateFavorite
             self.delegate.passDessert(dessert: addDessertViewModel.dessert)
-           
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -292,16 +300,16 @@ extension AddDessertViewController {
     private func inValidatedFieldsMessage() -> String {
         var str = ""
         if dessertImage.image == nil {
-            str += "You must choose photo."
+            str += NSLocalizedString(C.Text.noImageDessert.rawValue, comment: "")
         }
         if dessertName.text?.count == 0 {
-            str += "You must enter dessert name."
+            str += NSLocalizedString(C.Text.noDessertName.rawValue, comment: "")
         }
         if dessertCountry.text?.count == 0 {
-            str += "You must enter dessert country."
+            str += NSLocalizedString(C.Text.noDessertCountry.rawValue, comment: "")
         }
-        if dessertDescription.text == "Description" || dessertDescription.text == ""{
-            str += "You must enter dessert description."
+        if dessertDescription.text == NSLocalizedString(C.Text.description.rawValue, comment: "") || dessertDescription.text == ""{
+            str += NSLocalizedString(C.Text.noDessertDescription.rawValue, comment: "")
         }
         return str
     }
@@ -310,7 +318,7 @@ extension AddDessertViewController {
 //MARK: - Actions
 extension AddDessertViewController {
     @objc func dessertImageTapped() {
-        Alerts.showAlertImagePicker(controller: self, message: "Select Image From",
+        Alerts.showAlertImagePicker(controller: self, message: NSLocalizedString(C.Text.selectImageFrom.rawValue, comment: ""),
         openCameraButtonClicked: { 
             self.showImagePicker(selectedSource: .camera)
             self.placeholdertText.isHidden = true
@@ -323,7 +331,7 @@ extension AddDessertViewController {
     }
     
     @objc func addButtonTapped() {
-        if dessertDescription.text == "Description" || dessertDescription.text == "" {
+        if dessertDescription.text == NSLocalizedString(C.Text.description.rawValue, comment: "") || dessertDescription.text == "" {
             Alerts.showAlertMissingText(controller: self, message: inValidatedFieldsMessage()) {}
             return
         }
@@ -348,12 +356,11 @@ extension AddDessertViewController {
     }
     
     @objc func dessertStarTapped() {
-        if addDessertViewModel.dessert.isFavorite == false{
-            addDessertViewModel.stateFavori = true
-            dessertStar.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        addDessertViewModel.stateFavorite.toggle()
+        if addDessertViewModel.stateFavorite == true{
+            dessertStar.setImage(UIImage(systemName: C.ImageIcon.starFill.rawValue), for: .normal)
         }else{
-            addDessertViewModel.stateFavori = false
-            dessertStar.setImage(UIImage(systemName: "star"), for: .normal)
+            dessertStar.setImage(UIImage(systemName: C.ImageIcon.star.rawValue), for: .normal)
         }
     }
 }

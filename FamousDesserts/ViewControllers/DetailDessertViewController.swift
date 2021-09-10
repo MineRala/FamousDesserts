@@ -37,7 +37,7 @@ class DetailDessertViewController: UIViewController {
     
     private lazy var dessertStar: UIButton = {
         let ds = UIButton(frame: .zero)
-        ds.tintColor = .orange
+        ds.tintColor = C.Color.orangeColor
         ds.translatesAutoresizingMaskIntoConstraints = false
         ds.isEnabled = false
         return ds
@@ -47,7 +47,7 @@ class DetailDessertViewController: UIViewController {
         let dd = UITextView(frame: .zero)
         dd.isScrollEnabled = true
         dd.isEditable = false
-        dd.font = UIFont(name:"Helvetica Neue Light", size: 24)
+        dd.font = UIFont(name: C.commonFont, size: 24)
         dd.translatesAutoresizingMaskIntoConstraints = false
         return dd
     }()
@@ -82,10 +82,10 @@ extension DetailDessertViewController {
 //MARK: - Set Up UI
 extension DetailDessertViewController {
     private func setUpUI() {
-        super.view.backgroundColor = .white
+        super.view.backgroundColor = C.Color.whiteColor
 
         self.view.addSubview(dessertImage)
-        dessertImage.backgroundColor = .red
+        dessertImage.backgroundColor = C.Color.redColor
         dessertImage.topAnchor(margin: 0)
             .trailingAnchor(margin: 16)
             .heightAnchor(180)
@@ -101,7 +101,7 @@ extension DetailDessertViewController {
         self.view.addSubview(dessertDescription)
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        self.navigationItem.backBarButtonItem?.tintColor =  C.Color.backButtonColor
         
         dessertInfo.topAnchor.constraint(equalTo: dessertImage.bottomAnchor, constant: 8).isActive = true
         dessertInfo.leadingAnchor(margin: 28).trailingAnchor(margin: 28).heightAnchor(64)
@@ -110,8 +110,8 @@ extension DetailDessertViewController {
             .leadingAnchor(margin: 16)
             .trailingAnchor(margin: 16)
         dessertDescription.topAnchor.constraint(equalTo: dessertInfo.bottomAnchor, constant: 0).isActive = true
-        dessertInfo.backgroundColor = .white
-        dessertDescription.backgroundColor = .white
+        dessertInfo.backgroundColor = C.Color.whiteColor
+        dessertDescription.backgroundColor = C.Color.whiteColor
         
         if detailDessertViewModel.dessert.imageData != nil {
             dessertImage.image = UIImage(data: detailDessertViewModel.dessert.imageData!)
@@ -126,10 +126,10 @@ extension DetailDessertViewController {
         dessertDescription.text = detailDessertViewModel.dessert.description
         
         if detailDessertViewModel.dessert.isFavorite == true{
-            dessertStar.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            dessertStar.setImage(UIImage(systemName: C.ImageIcon.starFill.rawValue), for: .normal)
             
         }else{
-            dessertStar.setImage(UIImage(systemName: "star"), for: .normal)
+            dessertStar.setImage(UIImage(systemName: C.ImageIcon.star.rawValue), for: .normal)
         }
         
     }

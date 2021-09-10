@@ -44,10 +44,10 @@ extension FavoriteViewController {
 //MARK: - Set Up UI
 extension FavoriteViewController {
     private func setUpUI() {
-        self.view.backgroundColor = .white
-        self.title = "Favorite Desserts"
+        self.view.backgroundColor = C.Color.whiteColor
+        self.title = NSLocalizedString(C.Text.favoriteDessert.rawValue, comment: "")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem?.tintColor =  #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        self.navigationItem.backBarButtonItem?.tintColor =  C.Color.backButtonColor
         
         self.view.addSubview(favoriteDessertTableView)
         favoriteDessertTableView.register(FavoriteDessertCell.self, forCellReuseIdentifier: "FavoriteDessertCell")
@@ -83,7 +83,7 @@ extension FavoriteViewController: UITableViewDelegate,UITableViewDataSource  {
         let dessert = arrFavorited[indexPath.row]
         // Cell selection color changed.
         let backgroundView = UIView()
-        backgroundView.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        backgroundView.backgroundColor = C.Color.dessertImageBackgroundColor
         cell.selectedBackgroundView = backgroundView
         cell.updateCell(dessert: dessert)
         return cell
