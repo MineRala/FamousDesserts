@@ -28,7 +28,7 @@
 
 # Features
 - Added localizable feature for 3 languages.
-- Swift Package Manger used.
+- Swift Package Manager used.
 
 ### Method to use SwiftPM:
 Select Xcode menu `File > Swift Packages > Add Package Dependency` and enter repository URL with GUI.  
